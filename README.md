@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-helm repo add cert-manager-lego-webhook https://yxwuxuanl.github.io/cert-manager-lego-webhook/
+helm repo add cert-manager-lego-webhook https://rradillen.github.io/cert-manager-lego-webhook/
 
 helm install cert-manager-lego-webhook cert-manager-lego-webhook/cert-manager-lego-webhook \
     --set=certManager.namespace=cert-manager \ # replace with your cert-manager namespace
