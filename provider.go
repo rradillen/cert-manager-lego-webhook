@@ -49,30 +49,7 @@ func newProvider(provider string, envs map[string]string) (*providerWrapper, err
 		return nil, err
 	}
 
-	// Build dns01 options based on envs
-	var opts []dns01.ChallengeOption
-
-	// Disable complete propagation requirement
-	if val, ok := envs["LEGO_DISABLE_CP"]; ok && (strings.ToLower(val) == "true" || val == "1") {
-		opts = append(opts, dns01.DisableCompletePropagationRequirement())
-	}
-
-	// Custom DNS resolvers
-	if nameservers, ok := envs["LEGO_DNS_RESOLVERS"]; ok {
-		resolvers := strings.Split(nameservers, ",")
-		opts = append(opts, dns01.AddRecursiveNameservers(resolvers))
-	}
-
-	// Wrap the provider with dns01 options if any are set
-	var finalProvider challenge.Provider = p
-	if len(opts) > 0 {
-		finalProvider, err = challenge.NewDNS01Provider(p, opts...)
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	return &providerWrapper{finalProvider, envs}, nil
+	return &providerWrapper{p, envs}, nil
 }
 
 func setenvs(envs map[string]string) func() {
