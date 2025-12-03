@@ -17,3 +17,9 @@ COPY --from=builder --chown=nonroot:nonroot /app/webhook /webhook
 USER nonroot
 
 ENTRYPOINT ["/webhook"]
+
+FROM alpine:3.19 AS debug
+RUN apk add --no-cache bash curl bind-tools iputils
+WORKDIR /app
+COPY --from=builder /app/webhook /webhook
+ENTRYPOINT ["/webhook"]
