@@ -12,15 +12,3 @@ ldflags:
   - -s
   - -w
 
-images:
-  webhook:
-    dockerfile: Dockerfile
-    platforms:
-      - linux/amd64
-      - linux/arm64
-  webhook-debug:
-    dockerfile: Dockerfile
-    target: debug
-    platforms:
-      - linux/amd64
-      - linux/arm64

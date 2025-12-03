@@ -19,4 +19,6 @@ jobs:
           go-version: '1.25.x'
       - uses: ko-build/setup-ko@v0.8
       - run: ko build --sbom=none --bare -t ${{ github.ref_name }} .
-      - run: ko build --sbom=none --bare -t ${{ github.ref_name }}-debug --target debug .
+      - name: Build debug image (alpine base via ko)
+        run: |
+          KO_CONFIG_PATH=.ko.debug.yaml ko build --sbom=none --bare -t ${{ github.ref_name }}-debug .

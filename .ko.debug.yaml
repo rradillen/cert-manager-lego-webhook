@@ -1,0 +1,17 @@
+# ko config for debug image using Alpine as base
+# ko will compile the Go binary and place it into the image, setting the entrypoint automatically.
+# This config swaps the base image to alpine to provide shell/tools (busybox), keeping things simple.
+
+# Default base image for all packages built by ko
+defaultBaseImage: alpine:3.19
+
+# Optional: set platforms to match your release builds
+platforms:
+  - linux/amd64
+  - linux/arm64
+
+# You can also override env or labels if needed
+# env:
+#   - name: GROUP_NAME
+#     value: your.group.name
+
